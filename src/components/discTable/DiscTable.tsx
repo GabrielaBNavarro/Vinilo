@@ -38,21 +38,21 @@ const DiscTable = ({ token, discData, loading, onCreate, onUpdate, onDelete }: I
     {
       title: "Nombre",
       dataIndex: "name",
-      key: "name",
+      id: "name",
     },
     {
       title: "Género",
       dataIndex: "genre",
-      key: "genre",
+      id: "genre",
     },
     {
       title: "Autor",
       dataIndex: "author",
-      key: "author",
+      id: "author",
     },
     {
       title: "Acciones",
-      key: "actions",
+      id: "actions",
       render: (disc: IDisco) => (
         <>
           <Tooltip placement="leftTop" title={'Editar álbum'}>
@@ -83,7 +83,7 @@ const DiscTable = ({ token, discData, loading, onCreate, onUpdate, onDelete }: I
 
   const handleDeleteConfirm = () => {
     if (deleteModalState.disc) {
-      onDelete(token, deleteModalState.disc.key);
+      onDelete(token, deleteModalState.disc.id);
       setDeleteModalState({ visible: false, disc: undefined });
     }
   };
@@ -100,7 +100,7 @@ const DiscTable = ({ token, discData, loading, onCreate, onUpdate, onDelete }: I
           columns={columns}
           dataSource={discData}
           bordered
-          rowKey="key"
+          rowKey="id"
           loading={loading}
           title={() => (
             <Button
@@ -109,7 +109,7 @@ const DiscTable = ({ token, discData, loading, onCreate, onUpdate, onDelete }: I
               className="btn-create"
               shape="round"
               onClick={() =>
-                onCreate(token, { key: 0, name: "", genre: "", author: "" })
+                onCreate(token, { id: 0, name: "", genre: "", author: "" })
               }
             >
               Crear
