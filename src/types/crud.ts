@@ -8,9 +8,11 @@ export interface IDisco {
 export interface ITableProps {
   token: string;
   discData?: IDisco[];
+  loading: boolean;
   onCreate: (token: string, data: IDisco) => void;
   onUpdate: (data: IDisco) => void;
   onDelete: (token: string, id: number) => void;
+  
 }
 export interface IEditDiscModalProps {
   modalVisible: boolean;

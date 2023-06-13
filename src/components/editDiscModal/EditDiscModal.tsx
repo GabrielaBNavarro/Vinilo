@@ -51,23 +51,42 @@ function EditDiscModal({ modalVisible, initialValues, onCancel, onUpdate }: IEdi
               required: true,
               message: "Por favor ingrese el nombre del álbum",
             },
+            {
+              max: 100, message: "La longitud máxima son 100 caracteres"
+            }
           ]}
         >
-          <Input />
+          <Input maxLength={101} />
         </Form.Item>
         <Form.Item
           label="Genero"
           name="genre"
-          rules={[{ required: true, message: "Por favor ingrese el genero" }]}
+          rules={[
+            { 
+              required: true, 
+              message: "Por favor ingrese el genero"
+             },
+             {
+              max: 15, message: "La longitud máxima son 15 caracteres"
+            }
+            ]}
         >
-          <Input />
+          <Input maxLength={16} />
         </Form.Item>
         <Form.Item
           label="Autor"
           name="author"
-          rules={[{ required: true, message: "Por favor ingrese el autor" }]}
+          rules={[
+            { 
+              required: true, 
+              message: "Por favor ingrese el autor" 
+            },
+            {
+              max: 50, message: "La longitud máxima son 50 caracteres"
+            }
+          ]}
         >
-          <Input />
+          <Input maxLength={51} />
         </Form.Item>
       </Form>
     </Modal>

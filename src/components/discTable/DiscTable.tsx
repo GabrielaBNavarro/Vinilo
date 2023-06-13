@@ -4,7 +4,7 @@ import { EditOutlined, DeleteOutlined, PlusOutlined } from "@ant-design/icons";
 import { IDisco, ITableProps } from "../../types/crud";
 import './discTable.css';
 
-const DiscTable = ({ token, discData, onCreate, onUpdate, onDelete }: ITableProps) => {
+const DiscTable = ({ token, discData, loading, onCreate, onUpdate, onDelete }: ITableProps) => {
   const [deleteModalState, setDeleteModalState] = useState<{
     visible: boolean;
     disc?: IDisco;
@@ -100,6 +100,7 @@ const DiscTable = ({ token, discData, onCreate, onUpdate, onDelete }: ITableProp
           columns={columns}
           dataSource={discData}
           bordered
+          loading={loading}
           title={() => (
             <Button
               type="primary"

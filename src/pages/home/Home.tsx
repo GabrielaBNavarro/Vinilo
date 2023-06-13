@@ -15,6 +15,7 @@ const Home = () => {
   const auth: string = localStorage.getItem("token") || "";
 
   const [discData, setDiscData] = useState<IDisco[]>([]);
+  const [loading, setLoading] = useState<boolean>(false)
   const [modalState, setModalState] = useState<{
     modalVisible: boolean;
     initialValues: IDisco;
@@ -31,15 +32,18 @@ const Home = () => {
   });
 
   useEffect(() => {
+    setLoading(true);
     getDiscData(auth).then((respuesta) => {
-      setDiscData(respuesta);
-    });
+      setDiscData(respuesta)
+      setLoading(false)
+    }
+    );
   }, []);
 
   const handleCreate = async (token: string, data: IDisco) => {
     try {
+      setLoading(true);
       const newData = await createDisc(token, data);
-      console.log(newData);
       setDiscData(newData);
       setModalState({
         modalVisible: false,
@@ -48,34 +52,39 @@ const Home = () => {
     } catch (error) {
       return Promise.reject(error);
     }
+    setLoading(false);
   };
   const handleEdit = (data: IDisco) => {
     setModalState({ modalVisible: true, initialValues: data });
   };
+
   const openCreate = () => {
     setCreateModalState({
       modalVisible: true,
       initialValues: { id: 0, name: "", author: "", genre: "" },
     });
   };
+
   const handleUpdate = async (token: string = auth, data: IDisco) => {
+    setLoading(true);
     const newData = await updateDisc(token, data);
-    console.log(newData);
     setDiscData(newData);
     setModalState({
       modalVisible: false,
       initialValues: { id: 0, name: "", author: "", genre: "" },
     });
+    setLoading(false);
   };
 
   const handleDelete = async (token: string, id: number) => {
+    setLoading(true);
     try {
       const newData = await deleteDisc(token, id);
-      console.log(newData);
       setDiscData(newData);
     } catch (error) {
       return Promise.reject(error);
     }
+    setLoading(false);
   };
 
   const onCancel = () => {
@@ -93,8 +102,8 @@ const Home = () => {
 
   return (
     <>
-      <HomeHeader/>
-      <DiscTable token={auth} discData={discData} onCreate={openCreate} onUpdate={handleEdit} onDelete={handleDelete} />
+      <HomeHeader />
+      <DiscTable token={auth} discData={discData} loading={loading} onCreate={openCreate} onUpdate={handleEdit} onDelete={handleDelete} />
       <EditDiscModal modalVisible={modalState.modalVisible} initialValues={modalState.initialValues} onCancel={onCancel} onUpdate={handleUpdate} />
       <CreateDiscModal modalVisible={createModalState.modalVisible} initialValues={createModalState.initialValues} onCancel={onCreateCancel} onCreate={handleCreate} />
     </>

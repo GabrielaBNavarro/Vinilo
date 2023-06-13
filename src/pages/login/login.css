@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
 *{
     margin: 0;
     padding: 0;
@@ -12,18 +14,39 @@
     width: 100vw;
     overflow: hidden;
 }
+
+.login-logo{
+    font-family: 'Pacifico', cursive;
+    font-size: 7.5rem;
+    color: white;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    text-align: center;
+
+}
+
 .login-card{
-    position: relative;
-    background-color:#871400ba;
+    background-color:#871400c7;
     border-radius: 10px;
-    padding: 30px 30px 5px;
+    padding: 25px 25px 5px;
     top: 35%;
-    width: max-content;
-    margin-left: 35%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .login-title{
     color: white;
-    margin-top: 5px;
+    margin-top: 2px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.btn-container{
+    display: flex;
     justify-content: center;
+    align-items: center;
+}
+.btn-login{
+    margin: 0 auto;
 }

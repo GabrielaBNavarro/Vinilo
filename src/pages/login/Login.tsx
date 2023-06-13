@@ -17,7 +17,7 @@ const Login = () => {
 
   const styleTheme = {
     "components": {
-        "Form": {
+      "Form": {
         "colorTextHeading": "rgba(255,255,255,1)",
         "colorError": "#ffccc7",
         "fontSize": 15
@@ -37,8 +37,8 @@ const Login = () => {
 
   return (
     <ConfigProvider theme={styleTheme}>
-      <Container fluid className="positiorelative loginLayout d-flex flex-column justify-content-center align-items-center vh-100">
-        
+      <Container fluid className="loginLayout d-flex flex-column justify-content-center align-items-center vh-100">
+        <h1 className="login-logo">Vinilo</h1>
         <Form
           name="basic"
           labelCol={{ span: 8 }}
@@ -51,23 +51,37 @@ const Login = () => {
           <Form.Item
             label="Usuario"
             name="user"
-            rules={[{ required: true, message: "Por favor ingrese su usuario" }]}
+            rules={[
+              {
+                required: true,
+                message: "Por favor ingrese su usuario"
+              },
+              {
+                max: 20, message: "La longitud máxima son 20 caracteres"
+              }
+            ]}
           >
-            <Input placeholder="Usuario" />
+            <Input placeholder="Usuario" maxLength={21} />
           </Form.Item>
 
           <Form.Item
             label="Contraseña"
             name="password"
             rules={[
-              { required: true, message: "Por favor ingrese su contraseña" },
+              {
+                required: true,
+                message: "Por favor ingrese su contraseña"
+              },
+              {
+                max: 14, message: "La longitud máxima son 14 caracteres"
+              }
             ]}
           >
-            <Input.Password placeholder="Contraseña" />
+            <Input.Password placeholder="Contraseña" maxLength={15} />
           </Form.Item>
 
-          <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-            <Button type='primary' shape='round' htmlType='submit'>
+          <Form.Item className="btn-container">
+            <Button type='primary' shape='round' htmlType='submit' className="btn-login">
               Iniciar sesion
             </Button>
           </Form.Item>
