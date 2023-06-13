@@ -22,14 +22,14 @@ const Home = () => {
     initialValues: IDisco;
   }>({
     modalVisible: false,
-    initialValues: { key: 0, name: "", author: "", genre: "" },
+    initialValues: { id: 0, name: "", author: "", genre: "" },
   });
   const [createModalState, setCreateModalState] = useState<{
     modalVisible: boolean;
     initialValues: IDisco;
   }>({
     modalVisible: false,
-    initialValues: { key: 0, name: "", author: "", genre: "" },
+    initialValues: { id: 0, name: "", author: "", genre: "" },
   });
 
   useEffect(() => {
@@ -48,7 +48,7 @@ const Home = () => {
       setDiscData(newData);
       setModalState({
         modalVisible: false,
-        initialValues: { key: 0, name: "", author: "", genre: "" },
+        initialValues: { id: 0, name: "", author: "", genre: "" },
       });
       Swal.fire({
         title: 'Álbum  creado con éxito',
@@ -67,7 +67,7 @@ const Home = () => {
   const openCreate = () => {
     setCreateModalState({
       modalVisible: true,
-      initialValues: { key: 0, name: "", author: "", genre: "" },
+      initialValues: { id: 0, name: "", author: "", genre: "" },
     });
   };
 
@@ -77,7 +77,7 @@ const Home = () => {
     setDiscData(newData);
     setModalState({
       modalVisible: false,
-      initialValues: { key: 0, name: "", author: "", genre: "" },
+      initialValues: { id: 0, name: "", author: "", genre: "" },
     });
     Swal.fire({
       title: 'Álbum actulizado con éxito',
@@ -87,10 +87,10 @@ const Home = () => {
     setLoading(false);
   };
 
-  const handleDelete = async (token: string, key: number) => {
+  const handleDelete = async (token: string, id: number) => {
     setLoading(true);
     try {
-      const newData = await deleteDisc(token, key);
+      const newData = await deleteDisc(token, id);
       setDiscData(newData);
       Swal.fire({
         title: 'El álbum fue eliminado',
@@ -106,13 +106,13 @@ const Home = () => {
   const onCancel = () => {
     setModalState({
       modalVisible: false,
-      initialValues: { key: 0, name: "", author: "", genre: "" },
+      initialValues: { id: 0, name: "", author: "", genre: "" },
     });
   };
   const onCreateCancel = () => {
     setCreateModalState({
       modalVisible: false,
-      initialValues: { key: 0, name: "", author: "", genre: "" },
+      initialValues: { id: 0, name: "", author: "", genre: "" },
     });
   };
 
