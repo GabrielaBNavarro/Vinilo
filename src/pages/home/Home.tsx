@@ -10,6 +10,7 @@ import {
 import EditDiscModal from "../../components/editDiscModal/EditDiscModal";
 import CreateDiscModal from "../../components/createDiscModal/CreateDiscModal";
 import HomeHeader from "../../components/homeHeader/HomeHeader";
+import Swal from "sweetalert2";
 
 const Home = () => {
   const auth: string = localStorage.getItem("token") || "";
@@ -49,6 +50,11 @@ const Home = () => {
         modalVisible: false,
         initialValues: { key: 0, name: "", author: "", genre: "" },
       });
+      Swal.fire({
+        title: 'Álbum  creado con éxito',
+        icon: "success",
+        confirmButtonColor: "#d4380d",
+      });
     } catch (error) {
       return Promise.reject(error);
     }
@@ -73,6 +79,11 @@ const Home = () => {
       modalVisible: false,
       initialValues: { key: 0, name: "", author: "", genre: "" },
     });
+    Swal.fire({
+      title: 'Álbum actulizado con éxito',
+      icon: "success",
+      confirmButtonColor: "#d4380d",
+    });
     setLoading(false);
   };
 
@@ -81,6 +92,11 @@ const Home = () => {
     try {
       const newData = await deleteDisc(token, key);
       setDiscData(newData);
+      Swal.fire({
+        title: 'El álbum fue eliminado',
+        icon: "success",
+        confirmButtonColor: "#d4380d",
+      });
     } catch (error) {
       return Promise.reject(error);
     }
