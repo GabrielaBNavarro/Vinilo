@@ -1,4 +1,4 @@
-import { Modal, Form, Input, Button } from "antd";
+import { Modal, Form, Input, Button, ConfigProvider } from "antd";
 import { IEditDiscModalProps } from "../../types/crud";
 
 function EditDiscModal({ modalVisible, initialValues, onCancel, onUpdate }: IEditDiscModalProps) {
@@ -10,15 +10,28 @@ function EditDiscModal({ modalVisible, initialValues, onCancel, onUpdate }: IEdi
       const updatedData = { ...initialValues, ...values };
       onUpdate(auth, updatedData);
       onCancel();
+      form.resetFields()
     } catch (error) {
       console.error(error);
     }
   };
 
+  const styleTheme = {
+    "components": {
+    },
+    "token": {
+      "colorPrimary": "#fa541c",
+      "wireframe": true
+    }
+
+  }
+
   return (
+    <ConfigProvider theme={styleTheme}>
     <Modal
       open={modalVisible}
       onCancel={onCancel}
+      destroyOnClose={true}
       title="Editar álbum"
       footer={
         <>
@@ -29,7 +42,7 @@ function EditDiscModal({ modalVisible, initialValues, onCancel, onUpdate }: IEdi
         </>
       }
     >
-      <Form form={form} layout="vertical" initialValues={initialValues}>
+      <Form preserve={false} form={form} layout="vertical" initialValues={initialValues}>
         <Form.Item
           label="Nombre"
           name="name"
@@ -58,6 +71,7 @@ function EditDiscModal({ modalVisible, initialValues, onCancel, onUpdate }: IEdi
         </Form.Item>
       </Form>
     </Modal>
+    </ConfigProvider>
   );
 }
 

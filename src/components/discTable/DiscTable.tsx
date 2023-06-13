@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Table, Button, Modal, Tooltip } from "antd";
+import { Table, Button, Modal, Tooltip, ConfigProvider } from "antd";
 import { EditOutlined, DeleteOutlined, PlusOutlined } from "@ant-design/icons";
 import { IDisco, ITableProps } from "../../types/crud";
 import './discTable.css';
@@ -9,6 +9,31 @@ const DiscTable = ({ token, discData, onCreate, onUpdate, onDelete }: ITableProp
     visible: boolean;
     disc?: IDisco;
   }>({ visible: false, disc: undefined });
+
+  const styleTheme = {
+    "components": {
+      "Table": {
+        "colorBorderSecondary": '#ff9c6e',
+        "colorFillAlter": '#ffbb96'
+      },
+      "Button":{
+        "colorPrimary": '#f27c1c',
+        "colorError": '#cf1322'
+      },
+      "Pagination": {
+        "colorPrimary": "#fa541c",
+        "colorPrimaryHover": "#d4380d",
+        "controlOutline": "#d4380d",
+        "colorPrimaryBorder": "#d4380d"
+      }
+    },
+    "token": {
+        "colorPrimary": "#d4380d",
+        "wireframe": true
+      }
+    
+  }
+
   const columns = [
     {
       title: "Nombre",
@@ -30,26 +55,26 @@ const DiscTable = ({ token, discData, onCreate, onUpdate, onDelete }: ITableProp
       key: "actions",
       render: (text: any, disc: IDisco) => (
         <>
-        <Tooltip placement="leftTop" title={'Edit disc'}>
-          <Button
-            type="primary"
-            shape='round'
-            className="tableButton"
-            icon={<EditOutlined />}
-            onClick={() => onUpdate(disc)}
-          ></Button>
+          <Tooltip placement="leftTop" title={'Editar álbum'}>
+            <Button
+              type="primary"
+              shape='round'
+              className="tableButton"
+              icon={<EditOutlined />}
+              onClick={() => onUpdate(disc)}
+            ></Button>
           </Tooltip>
-          <Tooltip placement="rightTop" title={'Delete disc'}>
-          <Button
-            className="tableButton"
-            danger
-            shape='round'
-            type="primary"
-            icon={<DeleteOutlined />}
-            onClick={() => setDeleteModalState({ visible: true, disc })}
-          >
-            
-          </Button>
+          <Tooltip placement="rightTop" title={'Eliminar álbum'}>
+            <Button
+              className="tableButton"
+              danger
+              shape='round'
+              type="primary"
+              icon={<DeleteOutlined />}
+              onClick={() => setDeleteModalState({ visible: true, disc })}
+            >
+
+            </Button>
           </Tooltip>
         </>
       ),
@@ -69,23 +94,27 @@ const DiscTable = ({ token, discData, onCreate, onUpdate, onDelete }: ITableProp
 
   return (
     <>
-      <Table
-        columns={columns}
-        dataSource={discData}
-        bordered
-        title={() => (
-          <Button
-            type="primary"
-            icon={<PlusOutlined />}
-            onClick={() =>
-              onCreate(token, { id: 0, name: "", genre: "", author: "" })
-            }
-          >
-            +
-          </Button>
-        )}
-        scroll={{ y: 600 }}
-      />
+      <ConfigProvider theme={styleTheme}>
+        <Table
+          className="discTable"
+          columns={columns}
+          dataSource={discData}
+          bordered
+          title={() => (
+            <Button
+              type="primary"
+              icon={<PlusOutlined />}
+              className="btn-create"
+              shape="round"
+              onClick={() =>
+                onCreate(token, { id: 0, name: "", genre: "", author: "" })
+              }
+            >
+              Crear
+            </Button>
+          )}
+          scroll={{ y: 500 }}
+        />
 
       <Modal
         open={deleteModalState.visible}
@@ -97,6 +126,7 @@ const DiscTable = ({ token, discData, onCreate, onUpdate, onDelete }: ITableProp
       >
         <p>¿Está seguro que desea eliminar el álbum?</p>
       </Modal>
+      </ConfigProvider>
     </>
   );
 };

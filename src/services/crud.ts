@@ -18,6 +18,7 @@ export const getDiscData = async (token: string): Promise<IDisco[]> => {
 };
 
 export const updateDisc = async (token: string, data: IDisco) => {
+  console.log(data)
   const response = await axios.put(
     `https://6484f21dee799e3216272712.mockapi.io/disquera/disco/${data.id}`,
     data,
@@ -33,10 +34,7 @@ export const updateDisc = async (token: string, data: IDisco) => {
   return discos;
 };
 
-export const deleteDisc = async (
-  token: string,
-  id: number
-): Promise<IDisco[]> => {
+export const deleteDisc = async ( token: string, id: number): Promise<IDisco[]> => {
   await axios.delete(
     `https://6484f21dee799e3216272712.mockapi.io/disquera/disco/${id}`,
     {

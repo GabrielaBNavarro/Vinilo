@@ -9,6 +9,7 @@ import {
 } from "../../services/crud";
 import EditDiscModal from "../../components/editDiscModal/EditDiscModal";
 import CreateDiscModal from "../../components/createDiscModal/CreateDiscModal";
+import HomeHeader from "../../components/homeHeader/HomeHeader";
 
 const Home = () => {
   const auth: string = localStorage.getItem("token") || "";
@@ -92,6 +93,7 @@ const Home = () => {
 
   return (
     <>
+      <HomeHeader/>
       <DiscTable token={auth} discData={discData} onCreate={openCreate} onUpdate={handleEdit} onDelete={handleDelete} />
       <EditDiscModal modalVisible={modalState.modalVisible} initialValues={modalState.initialValues} onCancel={onCancel} onUpdate={handleUpdate} />
       <CreateDiscModal modalVisible={createModalState.modalVisible} initialValues={createModalState.initialValues} onCancel={onCreateCancel} onCreate={handleCreate} />

@@ -1,4 +1,17 @@
 .tableButton{
     margin: 3px;
-    align-items: center;
+    justify-content: center;
+}
+.discTable{
+margin-top: 1rem;
+}
+.ant-table-title{
+    height: 50px;
+}
+
+.btn-create{
+   display: block;
+   position: absolute;
+   top: 0.5rem;
+   right: 1rem
 }
