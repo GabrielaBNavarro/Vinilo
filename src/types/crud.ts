@@ -1,5 +1,5 @@
 export interface IDisco {
-  id: number;
+  key: number;
   name: string;
   genre: string;
   author: string;

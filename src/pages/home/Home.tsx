@@ -21,14 +21,14 @@ const Home = () => {
     initialValues: IDisco;
   }>({
     modalVisible: false,
-    initialValues: { id: 0, name: "", author: "", genre: "" },
+    initialValues: { key: 0, name: "", author: "", genre: "" },
   });
   const [createModalState, setCreateModalState] = useState<{
     modalVisible: boolean;
     initialValues: IDisco;
   }>({
     modalVisible: false,
-    initialValues: { id: 0, name: "", author: "", genre: "" },
+    initialValues: { key: 0, name: "", author: "", genre: "" },
   });
 
   useEffect(() => {
@@ -47,7 +47,7 @@ const Home = () => {
       setDiscData(newData);
       setModalState({
         modalVisible: false,
-        initialValues: { id: 0, name: "", author: "", genre: "" },
+        initialValues: { key: 0, name: "", author: "", genre: "" },
       });
     } catch (error) {
       return Promise.reject(error);
@@ -61,7 +61,7 @@ const Home = () => {
   const openCreate = () => {
     setCreateModalState({
       modalVisible: true,
-      initialValues: { id: 0, name: "", author: "", genre: "" },
+      initialValues: { key: 0, name: "", author: "", genre: "" },
     });
   };
 
@@ -71,15 +71,15 @@ const Home = () => {
     setDiscData(newData);
     setModalState({
       modalVisible: false,
-      initialValues: { id: 0, name: "", author: "", genre: "" },
+      initialValues: { key: 0, name: "", author: "", genre: "" },
     });
     setLoading(false);
   };
 
-  const handleDelete = async (token: string, id: number) => {
+  const handleDelete = async (token: string, key: number) => {
     setLoading(true);
     try {
-      const newData = await deleteDisc(token, id);
+      const newData = await deleteDisc(token, key);
       setDiscData(newData);
     } catch (error) {
       return Promise.reject(error);
@@ -90,13 +90,13 @@ const Home = () => {
   const onCancel = () => {
     setModalState({
       modalVisible: false,
-      initialValues: { id: 0, name: "", author: "", genre: "" },
+      initialValues: { key: 0, name: "", author: "", genre: "" },
     });
   };
   const onCreateCancel = () => {
     setCreateModalState({
       modalVisible: false,
-      initialValues: { id: 0, name: "", author: "", genre: "" },
+      initialValues: { key: 0, name: "", author: "", genre: "" },
     });
   };
 
