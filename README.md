@@ -9,9 +9,12 @@
 3. Ejecutar el comando `yarn install` para instalar las dependencias necesarias.
 
 ## Backend 🚀
-1. Descargar el repositorio del backend desde la siguiente URL: `https://github.com/GabrielaBNavarro/Vinilo-back`.
+1. Descargar el repositorio del backend desde el siguiente link: [Vinilo-back](https://github.com/GabrielaBNavarro/Vinilo-back).
 2. Seguir las instrucciones de instalación y ejecución del backend.
 
 ## Ejecución 🏃
 1. En la misma terminal, ejecutar el comando `yarn start`.
 2. Esperar a que el proyecto se compile y se abra en el navegador automáticamente.
+3. Para iniciar sesión utilizar las credenciales:
+   - Usuario: Administrador
+   - Contraseña: 123456
