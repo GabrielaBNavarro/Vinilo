@@ -15,3 +15,6 @@
 ## Ejecución 🏃
 1. En la misma terminal, ejecutar el comando `yarn start`.
 2. Esperar a que el proyecto se compile y se abra en el navegador automáticamente.
+3. Para iniciar sesión utilizar las credenciales:
+   - Usuario: Administrador
+   - Contraseña: 123456
